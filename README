@@ -1,5 +1,3 @@
-BARBU RODICA ANDREEA - GRUPA 322CC
-
 	Pentru a calcula expresia prefixata cu ajutorul arborelui AST am procedat astfel:
 	Parcurg arborele, retinand adresa radacinii in registrul eax (eax = [root]. Pentru a accesa 
 elementele din structura unui nod, folosite pentru parcurgere, voi folosi dereferentierile: eax 
