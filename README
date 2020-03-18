@@ -1,0 +1,36 @@
+BARBU RODICA ANDREEA - GRUPA 322CC
+
+	Pentru a calcula expresia prefixata cu ajutorul arborelui AST am procedat astfel:
+	Parcurg arborele, retinand adresa radacinii in registrul eax (eax = [root]. Pentru a accesa 
+elementele din structura unui nod, folosite pentru parcurgere, voi folosi dereferentierile: eax 
+va fi adresa structurii, [eax] este adresa char-ului, [[eax]] - valoarea de la adresa char, 
+[eax + 4] - adresa copilului din stanga, [eax + 8] - adresa copilului din dreapta. Parcurgerea 
+arborelui este realizata in preordine. Retin in vectorul expr adresele char-urilor din nodurile 
+parcurse. Dupa ce am retinut adresa nodului curent, trec la fiul din stanga al nodului. Parcurg 
+in stanga pana gasesc o frunza, nodul ce e frunza va deveni nul, apoi retin in eax adresa 
+nodului parinte al frunzei (retinut pe stiva) si parcurg in dreapta. Reiau parcurgerea pana ce 
+am parcurs toate nodurile. Dupa parcurgere elementele vectorului expr vor fi adresele
+char ale fiecarui nod al arborului si vor fi retinute in forma prefixata.
+	Parcurg vectorul expr, fiecare element va fi retinut in variabila numar_ascii. numar_ascii 
+reprezinta codul ASCII al numarului ce trebuie convertit. In variabila numar voi retine valoarea
+intreaga a numarului dupa convertire. Pentru convertirea valorii ASCII: parcurg byte cu byte si 
+scad valoarea 48, pentru a ajunge la numarul intreg corespunzator (va fi caracterul curent). 
+Folosesc formula: numar = numar * 10 + caracter curent. Reiau pana ajung la finalul sirului. 
+Daca numarul ce trebuie convertit e negativ, retin intr-un contor valoarea 1 pentru verificare 
+si dupa convertire voi inmulti numarul cu -1. Pun pe stiva numarul convertit. Daca in 
+numar_ascii se afla unul dintre operatorii: +, -, /, * sau valoarea 0, voi pune pe stiva 
+caracterul corespunzator.
+	Scot elementele din stiva si le retin in vectorul vector_inversat. Acum, in vector inversat
+o sa se afle numerele din expresia prefixata ce trebuie calculata, doar ca vor fi inversate.
+Voi calcula expresia cu ajutorul stivei: parcurg vectorul vector_inversat de la prima pozitie 
+si pun elementul pe stiva. Voi face operatia de parcurgere si operatiile de push pana la 
+intalnirea unui operator. Dupa ce intalnesc un operator, voi face trei operatii de pop: prima 
+pentru a scoate operatorul de pe stiva si urmatoarele doua pentru operanzi: in eax si ebx retin 
+operanzii si realizez dupa caz operatia, punand rezultatul pe stiva si continui pana ce parcurg 
+toate elementele din vector. Folosesc imul si idiv pentru a realiza si operatiile cu numere 
+negative. In cazul impartirii, daca deimpartitul este negativ, retin in edx valoarea -1/ 
+OxFFFFFFFF pentru a realiza operatia corect (in cazul impartirii valorilor pe 32 de biti, 
+deimpartitul este retinut in registrii edx si eax). La impartire doar catul va fi luat in 
+considerare (retinut in registrul eax). 
+	Elementul ramas in stiva dupa parcurgerea vectorului vector_inversat si realizarea 
+operatiilor este rezultatul final al expresiei date. Afisez rezultatul.
